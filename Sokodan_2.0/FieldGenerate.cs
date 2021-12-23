@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sokoban_2._0
+﻿namespace Sokoban_2._0
 {
     class FieldGenerate
     {
-        public void BoxPlaceGenerate(GameObject gameObject,int MapWidth, int MapHeight, int[,] map)
+        public void BoxPlaceGenerate(GameObject gameObject, int MapWidth, int MapHeight, int[,] map)
         {
             for (int i = 0; i < 3; i++)
             {

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sokoban_2._0
 {
@@ -26,7 +21,7 @@ namespace Sokoban_2._0
             {
                 for (int j = 0; j < MapHeight; j++)
                 {
-                    if (map[i,j] == sprite.spriteID) elements.Add(new Point (i,j));
+                    if (map[i, j] == sprite.spriteID) elements.Add(new Point(i, j));
                 }
             }
 

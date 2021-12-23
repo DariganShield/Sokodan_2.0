@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Sokoban_2._0
+﻿namespace Sokoban_2._0
 {
-    class Box:GameObject
+    class Box : GameObject
     {
         public Sprite BoxSprite()
         {

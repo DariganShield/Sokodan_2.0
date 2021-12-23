@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Sokoban_2._0
 {
@@ -10,7 +9,6 @@ namespace Sokoban_2._0
         public const int MapWidth = 41;
         public const int MapHeight = 41;
         int currentValue;
-        public string displayText = "Вы победили";
         public int[,] map = new int[MapWidth, MapHeight];
         private FieldGenerate generator = new FieldGenerate();
         private Player player = new Player();
@@ -19,7 +17,7 @@ namespace Sokoban_2._0
         private Colliding colliding = new Colliding();
         private Controller controller = new Controller();
         private BoxPlace boxPlace = new BoxPlace();
-        public Image SokodanSet;
+        public Image SokobanSet;
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +38,6 @@ namespace Sokoban_2._0
                 if (colliding.IsCollide(player, box, map, MapWidth, MapHeight))
                 {
                     box.x += colliding.dirX;
-                    //box.y = player.y;
                     player.x += colliding.dirX;
                 }
                 player.collision.CollisionBoundaries(map, player.PlayerSprite(), player.x, player.y);
@@ -65,7 +62,6 @@ namespace Sokoban_2._0
                 if (colliding.IsCollide(player, box, map, MapWidth, MapHeight))
                 {
                     box.y += colliding.dirY;
-                    //box.x = player.x;
                     player.y += colliding.dirY;
                 }
                 player.collision.CollisionBoundaries(map, player.PlayerSprite(), player.x, player.y);
@@ -98,7 +94,7 @@ namespace Sokoban_2._0
         {
             this.Width = (MapWidth + 2) * 10;
             this.Height = (MapHeight + 10) * 10;
-            SokodanSet = new Bitmap("C:\\Users\\User\\source\\repos\\Sokodan_2.0\\Sokodan_2.0\\Image\\Sokoban.png");
+            SokobanSet = new Bitmap("C:\\Users\\User\\source\\repos\\Sokodan_2.0\\Sokodan_2.0\\Image\\Sokoban.png");
             gameTimer.Interval = 100;
             for (int i = 0; i < MapWidth; i++)
             {
@@ -114,7 +110,7 @@ namespace Sokoban_2._0
             colliding.dirX = 4;
             colliding.dirY = -4;
             WallGenerator();
-            generator.BoxPlaceGenerate(boxPlace,MapWidth,MapHeight,map);
+            generator.BoxPlaceGenerate(boxPlace, MapWidth, MapHeight, map);
             BoxGenerator();
             gameTimer.Start();
         }
@@ -149,13 +145,13 @@ namespace Sokoban_2._0
             int count = 0;
             while (count < 6)
             {
-                    box.x = rnd1.Next(colliding.dirX*2, MapWidth-1- colliding.dirX*2);
-                    box.y = rnd1.Next(Math.Abs(colliding.dirY)*2, MapHeight-1 - Math.Abs(colliding.dirY)*2);
-                    if (map[box.x, box.y] == 0 && box.x % 4 == 0 && box.y % 4 == 0)
-                    {
-                        count++;
-                        box.collision.CollisionBoundaries(map, box.BoxSprite(), box.x, box.y);
-                    }
+                box.x = rnd1.Next(colliding.dirX * 2, MapWidth - 1 - colliding.dirX * 2);
+                box.y = rnd1.Next(Math.Abs(colliding.dirY) * 2, MapHeight - 1 - Math.Abs(colliding.dirY) * 2);
+                if (map[box.x, box.y] == 0 && box.x % 4 == 0 && box.y % 4 == 0)
+                {
+                    count++;
+                    box.collision.CollisionBoundaries(map, box.BoxSprite(), box.x, box.y);
+                }
             }
         }
         public void DrawMap(Graphics g)
@@ -166,26 +162,26 @@ namespace Sokoban_2._0
                 {
                     if (map[i, j] == player.sprite.spriteID)
                     {
-                        g.DrawImage(SokodanSet, new Rectangle(new Point(i * 10, j * 10),
+                        g.DrawImage(SokobanSet, new Rectangle(new Point(i * 10, j * 10),
                             new Size(player.PlayerSprite().srcx * 10, player.PlayerSprite().srcy * 10))
                             , 0, 0, player.PlayerSprite().srcWidth, player.PlayerSprite().srcHeight, GraphicsUnit.Pixel);
                     }
 
                     if (map[i, j] == box.sprite.spriteID)
                     {
-                        g.DrawImage(SokodanSet, new Rectangle(new Point(i * 10, j * 10),
+                        g.DrawImage(SokobanSet, new Rectangle(new Point(i * 10, j * 10),
                             new Size(box.BoxSprite().srcx * 10, box.BoxSprite().srcy * 10))
                             , 32, 0, box.BoxSprite().srcWidth, box.BoxSprite().srcHeight, GraphicsUnit.Pixel);
                     }
                     if (map[i, j] == wall.sprite.spriteID)
                     {
-                        g.DrawImage(SokodanSet, new Rectangle(new Point(i * 10, j * 10),
+                        g.DrawImage(SokobanSet, new Rectangle(new Point(i * 10, j * 10),
                                 new Size(wall.WallSprite().srcx * 10, wall.WallSprite().srcy * 10))
                             , 72, 0, wall.WallSprite().srcWidth, wall.WallSprite().srcHeight, GraphicsUnit.Pixel);
                     }
                     if (map[i, j] == boxPlace.sprite.spriteID)
                     {
-                        g.DrawImage(SokodanSet, new Rectangle(new Point(i * 10, j * 10),
+                        g.DrawImage(SokobanSet, new Rectangle(new Point(i * 10, j * 10),
                                 new Size(boxPlace.BoxPlaceSprite().srcx * 10, boxPlace.BoxPlaceSprite().srcy * 10))
                             , 112, 0, boxPlace.BoxPlaceSprite().srcWidth, boxPlace.BoxPlaceSprite().srcHeight, GraphicsUnit.Pixel);
                     }
@@ -212,7 +208,7 @@ namespace Sokoban_2._0
                 gameTimer.Stop();
                 if (dialog == DialogResult.Yes) this.Close();
             }
-            
+
         }
     }
 }

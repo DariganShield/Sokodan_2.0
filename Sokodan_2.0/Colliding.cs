@@ -71,19 +71,6 @@ namespace Sokoban_2._0
             return isColliding;
         }
 
-        /*public bool VoidAround(GameObject gameObject1, int[,] map, int MapWidth, int MapHeight)
-        {
-            if (map[gameObject1.x + gameObject1.sprite.srcx, gameObject1.y] < 1 &&
-                map[gameObject1.x - gameObject1.sprite.srcx, gameObject1.y] < 1 &&
-                map[gameObject1.x, gameObject1.y + gameObject1.sprite.srcy] < 1 &&
-                map[gameObject1.x, gameObject1.y - gameObject1.sprite.srcy] < 1)
-                return true;
-            else if (gameObject1.x < 2 * Math.Abs(dirX) || gameObject1.x > MapWidth - 2 * Math.Abs(dirX)
-                                                        || gameObject1.y < 2 * Math.Abs(dirY)
-                                                        || gameObject1.y > MapHeight - 2 * Math.Abs(dirY))
-                return false;
-            return true;
-        }*/
         public bool IsPlace(GameObject gameObject1, GameObject gameObject2, int[,] map, int MapWidth, int MapHeight)
         {
             var ElementList1 = gameObject1.collision.ElementList(map, gameObject1.sprite, MapWidth, MapHeight);
